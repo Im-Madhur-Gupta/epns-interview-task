@@ -1,6 +1,6 @@
 import ProductType from "../types/ProductType";
 
-import { Center, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import { Center, Grid, GridItem, Heading, Image } from "@chakra-ui/react";
 
 type ProductComponentType = {
   product: ProductType;
