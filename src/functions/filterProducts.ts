@@ -10,6 +10,8 @@ const filterProducts = (
   // using simple for loop inorder to utilize "continue" keyword.
   for (let product of products) {
     // checking for search key filter
+    // simply by checking whether the key is present in the title or not
+    // note - advanced searching can be implmented using fuzzysort package.
     if (
       !product.title
         .toLocaleLowerCase()

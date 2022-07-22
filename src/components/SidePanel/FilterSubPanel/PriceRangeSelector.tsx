@@ -34,6 +34,9 @@ const PriceRangeSelector = () => {
         <Input
           type="number"
           placeholder="Min"
+          _placeholder={{
+            fontSize: 15,
+          }}
           marginX={1}
           value={minPrice}
           onChange={minPriceChangeHandler}
@@ -41,6 +44,9 @@ const PriceRangeSelector = () => {
         <Input
           type="number"
           placeholder="Max"
+          _placeholder={{
+            fontSize: 15,
+          }}
           marginX={1}
           value={maxPrice}
           onChange={maxPriceChangeHandler}
