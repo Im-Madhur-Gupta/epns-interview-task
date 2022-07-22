@@ -1,19 +1,17 @@
 import { Select } from "@chakra-ui/react";
+import useStore from "../../../store";
 
 import sortOptions from "./sortOptions";
 
-import SortType from "../../../types/SortType";
+const SortSubPanel = () => {
+  const setSortObject = useStore((state) => state.setSortObject);
 
-type SortSubPanelComponentType = {
-  setSortObject: React.Dispatch<React.SetStateAction<SortType>>;
-};
-
-const SortSubPanel = ({ setSortObject }: SortSubPanelComponentType) => {
   const sortOptionChangeHandler: React.ChangeEventHandler<HTMLSelectElement> = (
     e
   ) => {
     setSortObject(sortOptions[e.target.value].sortObject);
   };
+
   return (
     <Select
       placeholder="Sort By"

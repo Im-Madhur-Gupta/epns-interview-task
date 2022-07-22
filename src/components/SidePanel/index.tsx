@@ -1,29 +1,26 @@
 import SortSubPanel from "./SortSubPanel";
+import FilterSubPanel from "./FilterSubPanel";
 
 import { Flex, Divider } from "@chakra-ui/react";
 
-import SortType from "../../types/SortType";
-
-type SidePanelComponentType = {
-  setSortObject: React.Dispatch<React.SetStateAction<SortType>>;
-};
-
-const SidePanel = ({ setSortObject }: SidePanelComponentType) => {
+const SidePanel = () => {
   return (
     <Flex
-      h="80vh"
+      h="90vh"
       w="18vw"
       direction="column"
       justify="space-around"
       position="sticky"
-      top="10%"
+      top="5%"
       bgColor="#3e3d43"
       marginY={3}
-      padding={6}
+      padding={4}
       borderRadius="4px"
+      overflow="scrollY"
     >
-      <SortSubPanel setSortObject={setSortObject} />
+      <SortSubPanel />
       <Divider />
+      <FilterSubPanel />
     </Flex>
   );
 };
