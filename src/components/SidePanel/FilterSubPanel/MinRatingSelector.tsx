@@ -12,9 +12,9 @@ import {
 } from "@chakra-ui/react";
 
 const MinRatingSelector = () => {
-  const [minRating, setMinRating] = useState("0");
-
   const setMinRatingFilter = useStore((state) => state.setMinRatingFilter);
+
+  const [minRating, setMinRating] = useState("0");
 
   useEffect(() => {
     setMinRatingFilter(+minRating);
@@ -32,12 +32,16 @@ const MinRatingSelector = () => {
           onClick={() => {
             setMinRating("0");
           }}
-          colorScheme='yellow'
+          colorScheme="yellow"
         >
           clear
         </Button>
       </Flex>
-      <RadioGroup value={minRating} onChange={setMinRating} colorScheme='yellow'>
+      <RadioGroup
+        value={minRating}
+        onChange={setMinRating}
+        colorScheme="yellow"
+      >
         <Stack direction="column">
           <Radio value="4">4 Star and Up</Radio>
           <Radio value="3">3 Star and Up</Radio>

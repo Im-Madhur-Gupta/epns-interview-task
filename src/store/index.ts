@@ -7,6 +7,7 @@ interface ProcessingState {
   filterObject: FilterType;
   sortObject: SortType;
   setSortObject: (newSortObject: SortType) => void;
+  setSearchFilter: (newSearchKey: string) => void;
   setCategoriesFilter: (newCategories: string[]) => void;
   setPriceRangeFilter: (newPriceRange: { min: number; max: number }) => void;
   setMinRatingFilter: (newMinRating: number) => void;
@@ -23,7 +24,7 @@ const useStore = create<ProcessingState>()((set) => ({
     },
     minRating: 0,
   },
-  
+
   // state to store the sorting config
   sortObject: {
     order: "inc",
@@ -34,6 +35,10 @@ const useStore = create<ProcessingState>()((set) => ({
   setSortObject: (newSortObject) => set({ sortObject: { ...newSortObject } }),
 
   // methods to set the filter object
+  setSearchFilter: (newSearchKey: string) =>
+    set((state) => ({
+      filterObject: { ...state.filterObject, searchKey: newSearchKey },
+    })),
   setCategoriesFilter: (newCategories) =>
     set((state) => ({
       filterObject: { ...state.filterObject, categories: newCategories },

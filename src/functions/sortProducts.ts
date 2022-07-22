@@ -29,12 +29,12 @@ const getCompareFunction = (sortObject: SortType) => {
   };
 };
 
-const sortProducts = (newProducts: ProductType[], sortObject: SortType) => {
+const sortProducts = (products: ProductType[], sortObject: SortType) => {
   // obtaining the compare function based on the sort object
   const compare = getCompareFunction(sortObject);
 
   // using JS in-place sort method
-  newProducts.sort(compare);
+  products.sort(compare);
 };
 
 export default sortProducts;

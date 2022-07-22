@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// global store
 import useStore from "../store";
 
+// components
+import SearchProduct from "./SearchProduct";
 import ProductList from "./ProductList";
 import SidePanel from "./SidePanel";
 
+// functions
 import sortProducts from "../functions/sortProducts";
+import filterProducts from "../functions/filterProducts";
 
+// ui
 import { Center, Flex, Spinner } from "@chakra-ui/react";
 
+// types
 import ProductType from "../types/ProductType";
 
 let allProducts: ProductType[] = [];
 
 const Products = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [processedProducts, setProcessedProducts] = useState<ProductType[]>([]);
-
   const { sortObject, filterObject } = useStore((state) => ({
     filterObject: state.filterObject,
     sortObject: state.sortObject,
   }));
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [processedProducts, setProcessedProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -51,12 +58,12 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    const newProducts = [...allProducts];
+    let newProducts = [...allProducts];
 
     // filtering
-    console.log(filterObject);
+    newProducts = filterProducts(newProducts, filterObject);
 
-    // sorting
+    // in-place sorting of products
     sortProducts(newProducts, sortObject);
 
     setProcessedProducts(newProducts);
@@ -77,7 +84,10 @@ const Products = () => {
       ) : (
         <Flex justify="space-between" paddingX={8}>
           <SidePanel />
-          <ProductList processedProducts={processedProducts} />
+          <Flex direction="column">
+            <SearchProduct />
+            <ProductList processedProducts={processedProducts} />
+          </Flex>
         </Flex>
       )}
     </>
