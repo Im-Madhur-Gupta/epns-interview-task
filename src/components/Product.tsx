@@ -7,14 +7,15 @@ type ProductComponentType = {
 };
 
 const Product = ({ product }: ProductComponentType) => {
-  const { title, price, rating, category, description, image } = product;
+  const { title, price, rating, noOfReviews, category, description, image } =
+    product;
   return (
     <Grid
-      templateAreas={`"image title title title"
-                      "image category rating price"
-                      "image description description description"`}
+      templateAreas={`"image title title title title"
+                      "image category rating reviews price"
+                      "image description description description description"`}
       gridTemplateRows="1fr 0.75fr 0.5fr"
-      gridTemplateColumns="repeat(4, 1fr)"
+      gridTemplateColumns="repeat(5, 1fr)"
       h="30vh"
       rowGap={1}
       columnGap={5}
@@ -37,6 +38,10 @@ const Product = ({ product }: ProductComponentType) => {
           {title}
         </Heading>
       </GridItem>
+      <GridItem area={"category"}>{category}</GridItem>
+      <GridItem area={"rating"}>{`${rating}/5`}</GridItem>
+      <GridItem area={"reviews"}>{`${noOfReviews} reviews`}</GridItem>
+      <GridItem area={"price"} fontSize={20}>{`$ ${price}`}</GridItem>
       <GridItem
         area={"description"}
         overflow="hidden"
@@ -45,9 +50,6 @@ const Product = ({ product }: ProductComponentType) => {
       >
         {description}
       </GridItem>
-      <GridItem area={"category"}>{category}</GridItem>
-      <GridItem area={"price"}>{`$ ${price}`}</GridItem>
-      <GridItem area={"rating"}>{`${rating.rate}/5`}</GridItem>
     </Grid>
   );
 };

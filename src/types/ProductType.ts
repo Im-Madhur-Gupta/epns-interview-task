@@ -1,11 +1,9 @@
 type ProductType = {
-  id: string;
+  id: number;
   title: string;
   price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
+  rating: number;
+  noOfReviews: number;
   category: string;
   description: string;
   image: string;
